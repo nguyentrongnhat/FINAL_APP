@@ -101,6 +101,13 @@ N/A
 
 
 #### Coding conventions & best practices
+1. Redundant definition for Gem. This is not neccessary when using Gem on Rails
+
+```
+require 'carrierwave/orm/activerecord'
+```
+
+
 
 **Example:**
 

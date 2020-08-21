@@ -1142,6 +1142,12 @@ ApplicationController#check_login
 <h4 id="performance">Performance<a class="headerlink" href="#performance" title="Permanent link"></a></h4>
 <p><strong>The issues that are related to performance, also include solution issues (e.g: polling instead of socket). Example:</strong></p>
 <h4 id="coding-conventions-best-practices">Coding conventions &amp; best practices<a class="headerlink" href="#coding-conventions-best-practices" title="Permanent link"></a></h4>
+<ol>
+<li>Redundant definition for Gem. This is not neccessary when using Gem on Rails</li>
+</ol>
+<div class="codehilite"><pre>require &#39;carrierwave/orm/activerecord&#39;
+</pre></div>
+
 <p><strong>Example:</strong></p>
 <h3 id="lessons-learned">Lessons learned<a class="headerlink" href="#lessons-learned" title="Permanent link"></a></h3>
 <hr />
