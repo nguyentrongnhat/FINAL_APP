@@ -8,39 +8,54 @@
 
 @media (min-width: 987px) {
 	.shadow{
-		height:300px;
-		max-height: 300px;
+		height:250px;
+		max-height: 250px;
 	}
+
+	.no-gutters{
+		max-height: 250px;
+	}
+
 	.image {
 		display: block;
 		width:100%;
-		height:300px;
-		max-height: 300px;
+		height:250px;
+		max-height: 250px;
 		/*width: auto;*/
 	}
 }
 
 @media (min-width: 768px) {
 	.shadow{
-		height: 300px;
-		max-height: 300px;
+		height: 250px;
+		max-height: 250px;
 	}
+
+	.no-gutters{
+		max-height: 250px;
+	}
+
 	.image {
 		display: block;
 		width:100%;
-		height:300px;
-		max-height: 300px;
+		height:250px;
+		max-height: 250px;
 		/*width: auto;*/
 	}
 }
 
 .model {
 	margin-top: 25px;
-	width: 300px;
-	
+	width: 250px;
 }
 
 .photos_to_albums{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.page{
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -56,14 +71,17 @@
 	color: #4e69a2;
 }
 
+.card{
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .card-text-decription{
 	max-height: 100px;
-	overflow: hidden;
 	font-size: 15px;
-	border-style: solid;
-	color: red;
+	display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
 }
 
 
@@ -71,13 +89,12 @@
 	position: absolute;
 	overflow: hidden;
 	font-size: 15px;
-	bottom: 0px;
-	right: 0px
+	bottom: 25px;
 }
 
 .card-body{
-	max-height: 300px;
-	height: 300px;
+	max-height: 250px;
+	height: 250px;
 	overflow: hidden;
 	position: relative;
 }
@@ -94,10 +111,6 @@
 .shadow{
 	width: 100%;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-nav{
-	background-image: linear-gradient(#4e69a2, #3b5998 50%);
 }
 
 .overide-footer{
@@ -120,8 +133,13 @@ body.modal-open .ab {
 	opacity: 1.0;
 }
 
-body{
-	opacity: 1.0;
+.nav-top{
+	background-image: linear-gradient(#4e69a2, #3b5998 50%);
+}
+
+.navbar{
+	position: fixed;
+	top: 0px;
 }
 
 .form-edit{
@@ -129,3 +147,4 @@ body{
 	justify-content: center;
 	align-items: center;
 }
+@import "bootstrap";

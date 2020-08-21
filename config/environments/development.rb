@@ -65,10 +65,12 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
   address: 'smtp.gmail.com',
   port: 587,
-  domain:  'fotobook.com',
-  user_name: '<username>',
-  password:  '<password>',
+  domain:  'gmail.com',
+  user_name: 'lordabsolute99@gmail.com',
+  password:  'OPENTHELOCKopenthelock123456',
   authentication: 'plain',
   enable_starttls_auto: true  
 }
+  #config devise
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 end
