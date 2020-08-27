@@ -1,26 +1,18 @@
 <div class="container pt-5" style="background-color: white">
   <div class="row cover-avatar">
     <div class="col-12 col-md-12 col-lg-4" style="text-align: center;">
-      <img src=<%= @profile_user.avatar %> class="rounded-circle avatar" style="display: inline-block;">
+
+      <% if @profile_user.avatar_identifier == "none" %>
+        <img src="/images/avatar_temp/avatar.png" class="rounded-circle avatar" style="display: inline-block;">
+      <% else %>
+        <img src=<%= @profile_user.avatar %> class="rounded-circle avatar" style="display: inline-block;">
+      <% end %>
+      
     </div>
     <div class="col-12 col-md-12 col-lg-8 text-profile">
       <div class="text-profile-sub">
-        <% if @profile_user.id != current_user.id %>
-          <% if @cmp == 0 %>
-            <div class="rounded-pill follow">
-              <span><strong class="follow-text">follow</strong></span>
-            </div>
-          <% else %>
-            <div class="rounded-pill following">
-              <span><strong class="following-text">following</strong></span>
-            </div>
-          <% end %>
-        <% elsif @profile_user.id == current_user.id %>
 
-          <div class="rounded-pill edit-profile">
-            <span><strong class="edit-profile-text">edit profile</strong></span>
-          </div>
-        <% end %>
+        <%= render 'follow_container', profile_user: @profile_user %>
 
         <h1 class="name-account"><%= @profile_user.firstname + " " + @profile_user.lastname %></h1>
         
@@ -46,7 +38,7 @@
           
           <li class="list-inline-item">
             <%= link_to profiles_followers_path(@profile_user.id), :class=>"link-in-profiles", :style=>"text-decoration: none;" do %>
-              <h3 class="inline-item">0</h3> FOLLOWERS
+              <h3 class="inline-item"><%= @followers.size %></h3> FOLLOWERS
             <% end %>
           </li>
         
@@ -55,14 +47,56 @@
       </div>   
     </div>
   </div>
+
+  <div class="row">
+    <div class="col-12">
+      <%= link_to new_album_path, :method => "GET" do %>
+      <div class="rounded-pill btn-add-photo">
+        <span><strong class="btn-add-photo-text">Add Album</strong></span>
+      </div>
+      <% end %>
+    </div>
+  </div>
+
   <div class="row pt-5">
     <% @albums.each do |album| %>
-      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-        <div class="cover-thumnail">
+
+      <% if @profile_user.id != current_user.id and album.status == false %>
+        
+        <%next%>
+
+      <% end %>
+
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3" style="height: 280px; margin-bottom: 30px; display: flex; justify-content: center; align-items: center; position: relative;">
+        <div class="cover-thumnail" style="position: absolute; top: 30px;">
           <img src=<%= album.source %> class="one" alt="...">
           <img src=<%= album.source %> class="two" alt="...">
           <img src=<%= album.source %> class="three" alt="...">
-        </div> 
+        </div>
+
+        <div class="title-album" style="position: absolute; bottom: 5px;"><%= album.title %></div>
+
+        <% if @profile_user == current_user %>
+          <%= link_to edit_album_path(album.id) do %>
+            <div class="background-btn-edit-album"></div>
+
+            <div class="text-btn-edit-album">EDIT</div>
+          <% end %>
+        <% end %>
+
+        
+        <div class="background-num-of-album rounded-circle"></div>
+
+        <div class="text-num-of-album rounded-circle"><%= album.count_of_photos %></div>
+        <div class="text-num-of-album-small rounded-circle">PHOTOS</div>
+
+    
+        <% if album.status == false %>
+          <div class="background-icon-lock-album rounded-circle">
+            <i class="fas fa-lock"></i>
+          </div>
+        <% end %>
+
       </div>
     <% end %>
   </div>

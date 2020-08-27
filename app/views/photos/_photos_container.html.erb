@@ -1,5 +1,12 @@
-<% @photos.each do |photo| %>	
-	<div class="col-12 col-sm-12 col-md-6 model">
+<% @photos.each do |photo| %>
+	
+	<% if photo.user.id != current_user.id and photo.status == false %>
+        
+        <%next%>
+
+    <% end %>
+	
+	<div class="col-12 col-sm-12 col-md-6 model cover-card-photo" style="padding-bottom: 5px;">
 		<div class="card">
 			<div class="row no-gutters">
 				<div class="col-md-7" data-toggle="modal" data-target="#exampleModal">
@@ -9,13 +16,17 @@
 					<div class="card-body">
 						<div>
 							<%= link_to profiles_path(photo.user.id), :style=> "text-decoration: none;" do %>
-								<img src=<%=photo.user.avatar%> alt="..." class="rounded-circle" style="width: 40px; height: 40px">
+								<% if photo.user.avatar_identifier == "none" %>
+									<img src="/images/avatar_temp/avatar.png" alt="..." class="rounded-circle" style="width: 40px; height: 40px">
+								<% else %>
+									<img src=<%=photo.user.avatar%> alt="..." class="rounded-circle" style="width: 40px; height: 40px">
+								<% end %>
 								<span class="user-name-photo"><%=photo.user.firstname + " " + photo.user.lastname %></span>
 							<% end %>
 						</div>
 						<h5 class="card-title"><%= photo.title %></h5>
 						<p class="card-text-decription"><%= photo.decription %></p>
-						<p class="card-text-created_at"><i><small class="text-muted"><%= photo.created_at %></small></i></p>
+						<p class="card-text-created_at"><i><small class="text-muted"><%= l(photo.created_at, format: :own) %></small></i></p>
 
 						<p class="react" style="padding-right: 2px">
 							<% if photo.reacts.where(user_react: current_user.id).size == 0 %>
