@@ -30,7 +30,11 @@ Rails.application.routes.draw do
   delete "albums/edit/destroy/:id_album/:id_photo", to: "albums#destroy_photo_from_album", as: :destroy_photo_from_album
   
   root to: "photos#index"
-  namespace :admin do
-    resources :photos, :albums, :users
-  end
+  
+  #namespace :admin do
+  #  resources :photos, :albums, :users
+  #end
+
+  mount RailsAdmin::Engine => "/admin", as: :rails_admin
+
 end

@@ -103,9 +103,9 @@
 .card-text-created_at{
 	position: absolute;
 	overflow: hidden;
-	font-size: 20px;
+	font-size: 15px;
 	bottom: 0px;
-	right: 20px;
+	right: 23px;
 }
 
 .card-body{
